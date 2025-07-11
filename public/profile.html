@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Profile</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- ☀️🌙 Dark Mode Toggle -->
+  <button id="theme-toggle" aria-label="Toggle dark mode">☀️</button>
+
+  <div class="container">
+    <h1>Your Profile</h1>
+    <form id="profile-form">
+      <input type="text" id="username" placeholder="Username" /><br/>
+      <input type="email" id="email" placeholder="Email" /><br/>
+      <input type="file" id="profile-pic" /><br/>
+      <button type="submit">Update Profile</button>
+    </form>
+    <button id="back-dashboard">Back to Dashboard</button>
+  </div>
+
+  <script>
+    const themeToggle = document.getElementById('theme-toggle');
+    const body = document.body;
+
+    if (localStorage.getItem('theme') === 'dark') {
+      body.classList.add('dark-mode');
+      themeToggle.textContent = '🌙';
+    }
+
+    themeToggle.addEventListener('click', () => {
+      body.classList.toggle('dark-mode');
+      if (body.classList.contains('dark-mode')) {
+        themeToggle.textContent = '🌙';
+        localStorage.setItem('theme', 'dark');
+      } else {
+        themeToggle.textContent = '☀️';
+        localStorage.setItem('theme', 'light');
+      }
+    });
+
+    // Optional: Load current user info (implement API to fetch user data)
+    // You can prefill username/email here.
+
+    document.getElementById('profile-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      alert('Profile update logic goes here (API call)');
+      // Add your fetch() for updating user info & uploading profile pic.
+    });
+
+    document.getElementById('back-dashboard').addEventListener('click', () => {
+      window.location.href = 'dashboard.html';
+    });
+  </script>
+</body>
+</html>
